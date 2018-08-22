@@ -33,6 +33,9 @@ services:
     networks:
       - microservice
       - db
+    deploy:
+      mode: replicated
+      replicas: 2
   reclame-aqui-zuul:
     image: reclame-aqui-zuul
     environment:
