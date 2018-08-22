@@ -1,6 +1,6 @@
 # Teste BackEnd para o Reclame Aqui #
 
-##Tecnologias usadas no projeto##
+* Tecnologias usadas no projeto
     - Spring boot RESTful
     - Uso do Swagger Framework
     - Teste com MockMvc
@@ -9,7 +9,6 @@
     - Micro Services com Eureka e Zuul
     - Gerando build com maven e deploy com docker-compose
 
-##Executa o projeto##
 ```sh
 # Testando e gerando imagens no docker
 mvn clean install
