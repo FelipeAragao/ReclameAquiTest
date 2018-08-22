@@ -1,0 +1,46 @@
+version: '3'
+networks:
+  db:
+  microservice:
+services:
+  mongo:
+    image: bitnami/mongodb:latest
+    container_name: reclame-aqui-db
+    environment:
+      MONGODB_DATABASE: reclame-aqui-db
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: 7410
+    ports:
+      - "27017:27017"
+    networks:
+      - db        
+  reclame-aqui-server:
+    image: reclame-aqui-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservice
+  reclame-aqui-api:
+    container_name: reclame-aqui-api
+    image: reclame-aqui-api
+    environment:
+      EUREKA_INSTANCE_HOSTNAME: reclame-aqui-server
+    depends_on:
+      - reclame-aqui-server
+      - mongo
+    ports:
+      - "8060:8060"
+    networks:
+      - microservice
+      - db
+  reclame-aqui-zuul:
+    image: reclame-aqui-zuul
+    environment:
+      EUREKA_INSTANCE_HOSTNAME: reclame-aqui-server
+    depends_on:
+     - reclame-aqui-server
+    ports:
+     - "8080:8080"
+    networks:
+      - microservice
+    

@@ -82,9 +82,22 @@
 					</resources>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
-				<executions>
-					<execution></execution>
-				</executions>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<useFile>false</useFile>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
